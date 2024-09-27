@@ -10,7 +10,7 @@ const Etiquetas:any = {
   }
 }
 
-export class Changescurrezycontries {
+class Changescurrezycontries {
 
   constructor(){}
 
@@ -19,3 +19,5 @@ export class Changescurrezycontries {
   }
 
 }
+
+export default Changescurrezycontries;
