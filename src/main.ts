@@ -1,23 +1,12 @@
+import { InterfaceLabels } from "./models/interfaces"
+import { Labels } from "./utils/const"
 
-const Etiquetas:any = {
-  'PE':{
-      'Cliente': 'Cedente',
-      'Deudor': 'Aceptante'
-  },
-  'CL':{
-      'Cliente': 'Cliente',
-      'Deudor': 'Deudor'
-  }
-}
-
-class Changescurrezycontries {
+export class Faastlocation {
 
   constructor(){}
-
-  etiquetas( type = 'Cliente', contry = 'PE' ){
-    return Etiquetas[contry][type]
+  
+  labels({ contry, label }:InterfaceLabels ){
+    return Labels[contry.toLocaleLowerCase()][label.toLocaleLowerCase()]
   }
 
 }
-
-export default Changescurrezycontries;

@@ -1,26 +1,34 @@
 {
   "name": "currency_contry_exchange",
-  "version": "1.0.5",
+  "version": "1.1.2",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+  "files": [
+    "dist",
+    "index"
+  ],
+  "main": "./dist/aweson-lib-luis.umd.cjs",
+  "module": "./dist/aweson-lib-luis.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/aweson-lib-luis.js",
+      "require": "./dist/aweson-lib-luis.umd.cjs"
+    }
   },
   "author": {
     "name": "Luis Sanguino",
     "email": "luissanguino1702@gmail.com"
   },
-  "bin": "main.ts",
-  "files": [
-    "dist",
-    "src",
-    "index.html",
-    "tsconfig.json",
-    "public"
-  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
   "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.3",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.2.3"
   }
 }
