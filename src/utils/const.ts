@@ -1,10 +1,23 @@
 export const Labels:any = {
-    'peru':{
+    'pe':{
       'cliente': 'Cedente',
-      'deudor': 'Aceptante'
+      'clientes': 'Cedentes',
+      'deudor': 'Aceptante',
+      'deudores': 'Aceptantes',
+      'rut':'RUC'
     },
-    'chile':{
+    'cl':{
       'cliente': 'Cliente',
-      'deudor': 'Deudor'
+      'deudor': 'Deudor',
+      'clientes': 'Clientes',
+      'deudores': 'Deudores',
+      'rut':'RUT'
+    },
+    '':{
+      'cliente': 'Cliente',
+      'deudor': 'Deudor',
+      'clientes': 'Clientes',
+      'deudores': 'Deudores',
+      'rut':'RUT'
     }
 }
