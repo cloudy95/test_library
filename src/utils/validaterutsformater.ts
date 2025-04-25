@@ -68,6 +68,42 @@ export const ValidateRut:any = {
     }
 }
 
+export const ValidateDoc:any = {
+  'cl':(rut:string)=>{
+      return validaRut(rut);
+  },
+  'pe':(rut:string)=>{
+
+      if( rut.length == 8 ){
+        return true;
+      }
+
+      if( rut.length < 8  ){
+        Swal.fire({
+          text: "Documento inválido",
+          title: "El documento ingresado es inválido",
+          icon: "warning",
+        });
+        return false;
+      }
+      
+     if( rut.length > 11 || rut.length < 11 ){
+        Swal.fire({
+          text: "Documento inválido",
+          title: "El documento ingresado es inválido",
+          icon: "warning",
+        });
+        return false;
+     }
+
+     return true;
+
+  },
+  '':(rut:string)=>{
+      return validaRut(rut);
+  }
+}
+
 
 export const validaRut = (obj:string) => {
     var largo, crut, rut, dv, i, suma, mul, res, dvi;
