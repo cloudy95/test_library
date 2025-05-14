@@ -13,7 +13,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/main.ts'),
       name: 'MyLib',
       // the proper extensions will be added
-      fileName: 'aweson-lib-luis',
+      fileName: 'main',
       formats: ['es', 'cjs', 'umd', 'iife']
     },
   },

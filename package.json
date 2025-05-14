@@ -1,19 +1,21 @@
 {
   "name": "currency_contry_exchange",
-  "version": "1.5.7",
+  "version": "1.6.1",
   "type": "module",
   "license": "MIT",
   "files": [
     "dist",
-    "index"
+    "main",
+    "main.d.ts"
   ],
-  "main": "./dist/aweson-lib-luis.umd.cjs",
-  "module": "./dist/aweson-lib-luis.js",
+  "main": "./dist/main.umd.cjs",
+  "module": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/aweson-lib-luis.js",
-      "require": "./dist/aweson-lib-luis.umd.cjs"
+      "import": "./dist/main.js",
+      "require": "./dist/main.umd.cjs",
+      "types": "./main.d.ts"
     }
   },
   "author": {

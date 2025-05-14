@@ -7,7 +7,7 @@ import { PropsInput } from "./utils/Propsinput";
 import { RutValidatorIsNatural } from "./utils/Rutvalidatorisnatural";
 import { FormateaRut, ValidateDoc, ValidateRut } from "./utils/validaterutsformater";
 
-interface FaastlocationInterface {
+export interface FaastlocationInterface {
   labels: ({ contry, label }: InterfaceLabels) => string
   validateFormaterRut: ({ contry, rut,isValidate  }: FormaterRut) => string | boolean;
   validateFormaterDoc: ({ contry, rut,isValidate  }: FormaterRut) => string | boolean;
@@ -19,32 +19,39 @@ interface FaastlocationInterface {
 }
 
 export class Faastlocation implements FaastlocationInterface {
+  private defaultCountry: string;
 
-  constructor(){}
-  labels({ contry = '', label = 'cliente' }:InterfaceLabels | any ):string{
+  /**
+   * Constructor de Faastlocation
+   * @param defaultCountry Opcional.
+   */
+  constructor(defaultCountry?: string) {
+    this.defaultCountry = defaultCountry ? contryCode(defaultCountry) : '';
+  }
+  labels({ contry = this.defaultCountry, label = 'cliente' }:InterfaceLabels | any ):string{
     const normalizedContry = contryCode(contry);
     const normalizedLabel = label.toLocaleLowerCase().trim() || '';
     
     const removeTildes:string = normalizedLabel?.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
 
-    return Labels[normalizedContry]?.[removeTildes] || '';
+    return Labels[normalizedContry]?.[removeTildes] || label;
   }
 
-  validateFormaterRut({ contry = '', rut = '', isValidate = false }:FormaterRut | any):string{
+  validateFormaterRut({ contry = this.defaultCountry, rut = '', isValidate = false }:FormaterRut | any):string{
     const normalizedContry = contryCode(contry);
     const normalizedRut = rut ? rut.toLocaleLowerCase().trim() || '' : '';
     
     return isValidate ? ValidateRut[normalizedContry](normalizedRut) : FormateaRut[normalizedContry](normalizedRut);
   }
 
-  validateFormaterDoc({ contry = '', rut = '', isValidate = false }:FormaterRut | any):string{
+  validateFormaterDoc({ contry = this.defaultCountry, rut = '', isValidate = false }:FormaterRut | any):string{
     const normalizedContry = contryCode(contry);
     const normalizedRut = rut ? rut.toLocaleLowerCase().trim() || '' : '';
     
     return isValidate ? ValidateDoc[normalizedContry](normalizedRut) : FormateaRut[normalizedContry](normalizedRut);
   }
 
-  formaterCurrency({ contry = '', currency = 0, typeCurrenzy = '' }:FormaterCurrencyInterface):string{
+  formaterCurrency({ contry = this.defaultCountry, currency = 0, typeCurrenzy = '' }:FormaterCurrencyInterface):string{
     const normalizedContry = contryCode(contry);
     const normalizedCurrenzy = currency ? currency.toString() || '0' : '0';
 
@@ -56,7 +63,12 @@ export class Faastlocation implements FaastlocationInterface {
     )
   }
 
-  formaterInputProps({ contry = '', typeCurrenzy='', decimalScale, fixedDecimalScale}:any):object{
+  formaterInputProps({ contry = this.defaultCountry, typeCurrenzy='', decimalScale, fixedDecimalScale}:{
+    contry: string;
+    typeCurrenzy?: string;
+    decimalScale?: number;
+    fixedDecimalScale?: boolean;
+  }):object{
     const normalizedContry = contryCode(contry);
 
     try{
@@ -70,7 +82,7 @@ export class Faastlocation implements FaastlocationInterface {
     }
   }
 
-  formaterAmount({ contry = '', amount = '', typeCurrenzy= '' }:FormaterAmountInterface):string{
+  formaterAmount({ contry = this.defaultCountry, amount = '', typeCurrenzy= '' }:FormaterAmountInterface):string{
     const normalizedContry = contryCode(contry);
     const normalizedAmount = amount ? amount?.toString().trim() || '' : '';
     
@@ -82,7 +94,7 @@ export class Faastlocation implements FaastlocationInterface {
     );
   }
 
-  rutValidatorIsNatural({ contry = '', rut = '' }:RutValidatorIsNaturalinterface):boolean{
+  rutValidatorIsNatural({ contry = this.defaultCountry, rut = '' }:RutValidatorIsNaturalinterface):boolean{
     const normalizedContry = contryCode(contry);
     const normalizedRut:any = rut ? rut.toLocaleLowerCase().trim() || '' : '';
 
@@ -91,7 +103,7 @@ export class Faastlocation implements FaastlocationInterface {
     return RutValidatorIsNatural[normalizedContry](newRut) || false;
   }
 
-  symbolCurrencyIndicadorCartera({ contry = ''}:symbolCurrencyIndicadorCarterainterface | any ):string{
+  symbolCurrencyIndicadorCartera({ contry = this.defaultCountry}:symbolCurrencyIndicadorCarterainterface | any ):string{
     const normalizedContry = contryCode(contry);
 
     return SimbolIndicadorcartera[normalizedContry] || '';

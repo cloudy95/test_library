@@ -51,7 +51,7 @@ export const ValidateRut:any = {
     },
     'pe':(rut:string)=>{
         
-       if( rut.length > 11 ||  rut.length < 11 ){
+       if( rut.length > 11 || rut.length < 11 ){
           Swal.fire({
             text: "Ruc inválido",
             title: "El RUC ingresado es inválido",

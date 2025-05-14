@@ -1,22 +1,22 @@
 export interface InterfaceLabels {
-    contry:string;
+    contry?:string;
     label:string;
 }
 
 export interface FormaterRut {
-    contry:string;
+    contry?:string;
     rut:string;
     isValidate:boolean;
 }
 
 export interface FormaterCurrencyInterface {
-    contry:string;
+    contry?:string;
     currency:any;
     typeCurrenzy?:string;
 }
 
 export interface FormaterAmountInterface {
-    contry:string;
+    contry?:string;
     amount:string;
     typeCurrenzy?:string;
 }
@@ -36,10 +36,10 @@ export interface Typecurrenzy{
 }
 
 export interface RutValidatorIsNaturalinterface {
-    contry:string;
+    contry?:string;
     rut:string | any;
 }
 
 export interface symbolCurrencyIndicadorCarterainterface {
-    contry:string;
+    contry?:string;
 }
