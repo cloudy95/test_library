@@ -1,8 +1,9 @@
-import { FormaterAmountInterface, FormaterCurrencyInterface, FormaterRut, InterfaceLabels, RutValidatorIsNaturalinterface, symbolCurrencyIndicadorCarterainterface } from "./models/interfaces"
+import { FormaterAmountInterface, FormaterCurrencyInterface, formaterNumDocumentinterface, FormaterRut, InterfaceLabels, RutValidatorIsNaturalinterface, symbolCurrencyIndicadorCarterainterface } from "./models/interfaces"
 import { Labels, SimbolIndicadorcartera } from './utils/const';
 import { contryCode } from "./utils/Contrycode";
 import { formateramount } from "./utils/FormaterAmount";
 import { FormaterCurrency } from "./utils/FormaterCurrency";
+import { formaterNumberDocument } from "./utils/formaterNumDocument";
 import { PropsInput } from "./utils/Propsinput";
 import { RutValidatorIsNatural } from "./utils/Rutvalidatorisnatural";
 import { FormateaRut, ValidateDoc, ValidateRut } from "./utils/validaterutsformater";
@@ -16,6 +17,7 @@ export interface FaastlocationInterface {
   formaterAmount:({ contry, amount }:FormaterAmountInterface)=>string;
   rutValidatorIsNatural:({ contry, rut }:RutValidatorIsNaturalinterface)=>boolean;
   symbolCurrencyIndicadorCartera: ({ contry }:symbolCurrencyIndicadorCarterainterface) => string;
+  formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
 }
 
 export class Faastlocation implements FaastlocationInterface {
@@ -107,6 +109,12 @@ export class Faastlocation implements FaastlocationInterface {
     const normalizedContry = contryCode(contry);
 
     return SimbolIndicadorcartera[normalizedContry] || '';
+  }
+
+  formaterNumDocument({ contry = this.defaultCountry, value = ''}:formaterNumDocumentinterface | any ):string{
+    const normalizedContry = contryCode(contry);
+
+    return formaterNumberDocument[normalizedContry](value) || value;
   }
 
 }

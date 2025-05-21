@@ -43,3 +43,9 @@ export interface RutValidatorIsNaturalinterface {
 export interface symbolCurrencyIndicadorCarterainterface {
     contry?:string;
 }
+
+export interface formaterNumDocumentinterface {
+    contry?:string;
+    value:string | any;
+}
+
