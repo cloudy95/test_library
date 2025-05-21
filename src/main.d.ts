@@ -1,13 +1,11 @@
-// index.d.ts
-
 import { FormaterAmountInterface, 
 FormaterCurrencyInterface, 
+formaterNumDocumentinterface, 
 FormaterRut, 
 InterfaceLabels, 
 RutValidatorIsNaturalinterface, 
 symbolCurrencyIndicadorCarterainterface } from "./models/interfaces";
 
-// Declara la interfaz principal
 declare interface FaastlocationInterface {
     labels: ({ contry, label }: InterfaceLabels) => string;
     validateFormaterRut: ({ contry, rut, isValidate }: FormaterRut) => string | boolean;
@@ -17,6 +15,7 @@ declare interface FaastlocationInterface {
     formaterAmount: ({ contry, amount, typeCurrenzy }: FormaterAmountInterface) => string;
     rutValidatorIsNatural: ({ contry, rut }: RutValidatorIsNaturalinterface) => boolean;
     symbolCurrencyIndicadorCartera: ({ contry }: symbolCurrencyIndicadorCarterainterface) => string;
+    formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
 }
   
 declare class Faastlocation implements FaastlocationInterface {
@@ -29,6 +28,7 @@ declare class Faastlocation implements FaastlocationInterface {
     formaterAmount({ contry, amount, typeCurrenzy }: FormaterAmountInterface): string;
     rutValidatorIsNatural({ contry, rut }: RutValidatorIsNaturalinterface): boolean;
     symbolCurrencyIndicadorCartera({ contry }: symbolCurrencyIndicadorCarterainterface | any): string;
+    formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
 }
   
 
