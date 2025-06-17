@@ -3,7 +3,7 @@ import { TYPECURRENZY } from "./const";
 
 export const FormaterCurrency:any = {
     'cl':({currenzy = ''}:FormaterCurrencyFnc)=>{
-        return formaterCurrencystring({currenzy, decimal:',', miles:'.'});
+        return formaterCurrencystring({currenzy, decimal:',', miles:'.', contry: 'cl'});
     },
     'pe':({currenzy = '', typeCurrenzy = '' }:FormaterCurrencyFnc)=>{
         if( typeCurrenzy == TYPECURRENZY.euro ){
@@ -16,7 +16,7 @@ export const FormaterCurrency:any = {
     }
 }
 
-const formaterCurrencystring = ({currenzy, decimal, miles}:any) => {
+const formaterCurrencystring = ({currenzy, decimal, miles, contry = 'pe'}:any) => {
     const numberStr = currenzy.toString();
   
     const part = numberStr.split('.');
@@ -25,5 +25,5 @@ const formaterCurrencystring = ({currenzy, decimal, miles}:any) => {
   
     const partIntFormater = partInt.replace(/\B(?=(\d{3})+(?!\d))/g, miles);
   
-    return `${ partIntFormater }${partFloat == '' ? '' : decimal}${partFloat}`;
+    return `${ partIntFormater }${partFloat == '' ? '' :  contry == 'cl' ? "" : decimal}${ contry == 'cl' ? '' : partFloat}`;
 }
