@@ -45,21 +45,18 @@ function roundPE(value: number): number {
 
 export const intersetAmountFnc: any = {
     'pe': ({ type, anticipo, tasa, plazo, array_interes }: interestAmountuntInterface) => {
-        // const round = (v: number) => Math.round(v * 100) / 100;
         if (Array.isArray(array_interes) && array_interes.length > 0) {
             return procesarArray(type, array_interes, roundPE);
         }
         return procesarIndividual(type, { tasa, plazo, anticipo }, roundPE);
     },
     'cl': ({ type, anticipo, tasa, plazo, array_interes }: interestAmountuntInterface) => {
-        // const round = (v: number) => Math.ceil(v);
         if (Array.isArray(array_interes) && array_interes.length > 0) {
             return procesarArray(type, array_interes, roundCL);
         }
         return procesarIndividual(type, { tasa, plazo, anticipo }, roundCL);
     },
     '': ({ type, anticipo, tasa, plazo, array_interes }: interestAmountuntInterface) => {
-        // const round = (v: number) => Math.ceil(v);
         if (Array.isArray(array_interes) && array_interes.length > 0) {
             return procesarArray(type, array_interes, roundCL);
         }
