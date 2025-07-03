@@ -49,3 +49,20 @@ export interface formaterNumDocumentinterface {
     value:string | any;
 }
 
+export type Typeinterest = 'simple' | 'compuesto' | '';
+export interface interestAmountuntInterface {
+    contry?:string;
+    type: Typeinterest;
+    anticipo?:number | string;
+    tasa?:number | string;
+    plazo?:number | string;
+    array_interes?:interesArrayInterface[]
+}
+
+export interface interesArrayInterface {
+    id:number | string;
+    anticipo?:number | string;
+    tasa?:number | string;
+    plazo?:number | string;
+}
+

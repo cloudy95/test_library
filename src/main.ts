@@ -1,9 +1,10 @@
-import { FormaterAmountInterface, FormaterCurrencyInterface, formaterNumDocumentinterface, FormaterRut, InterfaceLabels, RutValidatorIsNaturalinterface, symbolCurrencyIndicadorCarterainterface } from "./models/interfaces"
+import { FormaterAmountInterface, FormaterCurrencyInterface, formaterNumDocumentinterface, FormaterRut, interestAmountuntInterface, InterfaceLabels, RutValidatorIsNaturalinterface, symbolCurrencyIndicadorCarterainterface } from "./models/interfaces"
 import { Labels, SimbolIndicadorcartera } from './utils/const';
 import { contryCode } from "./utils/Contrycode";
 import { formateramount } from "./utils/FormaterAmount";
 import { FormaterCurrency } from "./utils/FormaterCurrency";
 import { formaterNumberDocument } from "./utils/formaterNumDocument";
+import { intersetAmountFnc } from "./utils/InterestAmount";
 import { PropsInput } from "./utils/Propsinput";
 import { RutValidatorIsNatural } from "./utils/Rutvalidatorisnatural";
 import { FormateaRut, ValidateDoc, ValidateRut } from "./utils/validaterutsformater";
@@ -18,6 +19,7 @@ export interface FaastlocationInterface {
   rutValidatorIsNatural:({ contry, rut }:RutValidatorIsNaturalinterface)=>boolean;
   symbolCurrencyIndicadorCartera: ({ contry }:symbolCurrencyIndicadorCarterainterface) => string;
   formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
+  interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes}:interestAmountuntInterface) => number | string | any[];
 }
 
 export class Faastlocation implements FaastlocationInterface {
@@ -115,6 +117,12 @@ export class Faastlocation implements FaastlocationInterface {
     const normalizedContry = contryCode(contry);
 
     return formaterNumberDocument[normalizedContry](value) || value;
+  }
+
+  interestAmountunt({ contry = this.defaultCountry, type = '', anticipo = 0, tasa = 0, plazo = 0, array_interes = []}: interestAmountuntInterface) : number | string | any[] {
+    const normalizedContry = contryCode(contry);
+
+    return intersetAmountFnc[normalizedContry]({ type, anticipo, tasa, plazo, array_interes}) || '';
   }
 
 }
