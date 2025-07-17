@@ -126,5 +126,3 @@ export class Faastlocation implements FaastlocationInterface {
   }
 
 }
-
-console.log( new Faastlocation('CL').rutValidatorIsNatural({ rut:"7.259.377-4" }) )
