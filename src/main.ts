@@ -102,9 +102,9 @@ export class Faastlocation implements FaastlocationInterface {
     const normalizedContry = contryCode(contry);
     const normalizedRut:any = rut ? rut.toLocaleLowerCase().trim() || '' : '';
 
-    const newRut = normalizedRut?.replaceAll('.','').replaceAll('-','');
+    // const newRut = normalizedRut?.replaceAll('.','').replaceAll('-','');
 
-    return RutValidatorIsNatural[normalizedContry](newRut) || false;
+    return RutValidatorIsNatural[normalizedContry](normalizedRut) || false;
   }
 
   symbolCurrencyIndicadorCartera({ contry = this.defaultCountry}:symbolCurrencyIndicadorCarterainterface | any ):string{
@@ -126,3 +126,5 @@ export class Faastlocation implements FaastlocationInterface {
   }
 
 }
+
+console.log( new Faastlocation('CL').rutValidatorIsNatural({ rut:"7.259.377-4" }) )
