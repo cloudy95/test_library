@@ -34,8 +34,13 @@ function procesarIndividual(type: Typeinterest, datos: any, roundFn: (v: number)
 }
 
 function roundCL(value: number): number {
-    // Si tiene decimales, redondea hacia arriba, si no, retorna igual
-    return Number.isInteger(value) ? value : Math.ceil(value);
+    // Si es entero, retorna igual
+    if (Number.isInteger(value)) return value;
+    const decimal = value - Math.floor(value);
+    // Si los decimales son 0.5 o más, redondea hacia arriba
+    if (decimal >= 0.5) return Math.ceil(value);
+    // Si los decimales son menores a 0.5, redondea hacia abajo (sin decimales)
+    return Math.floor(value);
 }
 
 function roundPE(value: number): number {
