@@ -15,7 +15,8 @@ export const Labels:any = {
       'documento':'Documento',
       'sii':'SUNAT',
       'anfac':'APEFAC',
-      'sbif':'RCC'
+      'sbif':'RCC',
+      'pagador': 'Gran Pagador'
     },
     'cl':{
       'cliente': 'Cliente',
