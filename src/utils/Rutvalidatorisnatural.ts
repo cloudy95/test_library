@@ -10,6 +10,9 @@ export const RutValidatorIsNatural:any = {
     'cl':(rut:any)=>{
         return Rutclp(rut);
     },
+    'co':(nit:any)=>{
+        return NitCo(nit);
+    },
     '':(rut:any)=>{
         return Rutclp(rut);
     }
@@ -21,5 +24,21 @@ const Rutclp = (rut:string = '')=>{
         return true;
     } else {
         return false;
-    } 
+    }
+}
+
+const NitCo = (nit:string = '')=>{
+    const nitLimpio = nit.replace(/\./g,'').replace(/-/g,'').replace(/\s/g,'');
+
+    // Obtener solo los dígitos sin el DV
+    const numero = nitLimpio.substring(0, nitLimpio.length - 1);
+
+    // Personas jurídicas en Colombia:
+    // - NITs que comienzan con 8 o 9 y tienen 9 dígitos (sin DV)
+    // - Ejemplos: 800.xxx.xxx, 830.xxx.xxx, 860.xxx.xxx, 900.xxx.xxx
+    if(numero.length === 9 && (numero.startsWith('8') || numero.startsWith('9'))) {
+        return false; // Es persona jurídica
+    }
+
+    return true; // Es persona natural
 }
