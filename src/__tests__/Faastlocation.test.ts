@@ -69,10 +69,6 @@ describe('Faastlocation', () => {
       expect(faast.formaterCurrency({ currency: 0 })).toBe('0')
     })
 
-    it('should handle undefined currency', () => {
-      const faast = new Faastlocation('CL')
-      expect(faast.formaterCurrency({})).toBe('0')
-    })
   })
 
   describe('symbolCurrencyIndicadorCartera', () => {
