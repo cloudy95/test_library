@@ -87,7 +87,8 @@ export const ObjecInputSeparatorCL:any = {
 
 export const CONTRY = {
   pe:'pe',
-  cl:'cl'
+  cl:'cl',
+  co:'co'
 }
 
 export const SimbolIndicadorcartera:any = {
