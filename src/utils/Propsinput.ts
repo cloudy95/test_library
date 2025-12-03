@@ -22,6 +22,20 @@ export const PropsInput:any = {
         fixedDecimalScale
       }
     },
+    'co':({typeCurrenzy = '', decimalScale = 0, fixedDecimalScale = 0 })=>{
+      if([TYPECURRENZY.euro, TYPECURRENZY.dolar].includes(typeCurrenzy)){
+        return {
+          ...ObjecInputSeparatorCL,
+          decimalScale: decimalScale != 0 ? decimalScale : 2,
+          fixedDecimalScale: fixedDecimalScale != 0 ? fixedDecimalScale : 2,
+        }
+      }
+      return {
+        ...ObjecInputSeparatorCL,
+        decimalScale,
+        fixedDecimalScale
+      }
+    },
     '':({ decimalScale = 0, fixedDecimalScale = 0 })=>{
       return {
         ...ObjecInputSeparatorCL,

@@ -32,7 +32,8 @@ export interface Formateramountfnc{
 }
 
 export interface Typecurrenzy{
-    euro:string
+    euro:string;
+    dolar:string;
 }
 
 export interface RutValidatorIsNaturalinterface {

@@ -11,6 +11,9 @@ export const formateramount:any = {
     'cl':({amount = ''}:Formateramountfnc)=>{
         return amount?.replaceAll('.','').replaceAll(',','.')
     },
+    'co':({amount = ''}:Formateramountfnc)=>{
+        return amount?.replaceAll('.','').replaceAll(',','.')
+    },
     '':({amount = ''}:Formateramountfnc)=>{
         return amount?.replaceAll('.','').replaceAll(',','')
     }

@@ -35,7 +35,6 @@ function procesarIndividual(type: Typeinterest, datos: any, roundFn: (v: number)
 
 function roundCL(value: number): number {
     // Si es entero, retorna igual
-    console.log('value', value)
     if (Number.isInteger(value)) return value;
     const decimal = value - Math.floor(value);
     // Si los decimales son 0.5 o más, redondea hacia arriba

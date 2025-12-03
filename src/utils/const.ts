@@ -34,6 +34,24 @@ export const Labels:any = {
       'anfac':'ANFAC',
       'sbif':'SBIF'
     },
+    'co':{
+      'cliente': 'Cedente',
+      'clientes': 'Cedentes',
+      'deudor': 'Aceptante',
+      'deudores': 'Aceptantes',
+      'rut':'NIT',
+      'rut cliente':'NIT Cedente',
+      'region':'Departamento',
+      'comuna':'Distrito',
+      'dicom':'Sentinel',
+      'documento':'NIT',
+      'sii':'RADIAN',
+      'anfac':'',
+      'sbif':'',
+      'cesión':'Endoso',
+      'excedente':'Garantia',
+      'iva':'IVA',
+    },
     '':{
       'cliente': 'Cliente',
       'deudor': 'Deudor',
@@ -53,7 +71,8 @@ export const Labels:any = {
 }
 
 export const TYPECURRENZY:Typecurrenzy = {
-  euro: 'EUR'
+  euro: 'EUR',
+  dolar: 'USD',
 }
 
 export const ObjecInputSeparatorPE:any = {
