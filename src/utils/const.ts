@@ -35,12 +35,12 @@ export const Labels:any = {
       'sbif':'SBIF'
     },
     'co':{
-      'cliente': 'Cedente',
-      'clientes': 'Cedentes',
+      'cliente': 'Proveedor',
+      'clientes': 'Proveedores',
       'deudor': 'Aceptante',
       'deudores': 'Aceptantes',
       'rut':'NIT',
-      'rut cliente':'NIT Cedente',
+      'rut cliente':'NIT Proveedor',
       'region':'Departamento',
       'comuna':'Distrito',
       'dicom':'Sentinel',
