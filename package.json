@@ -1,6 +1,6 @@
 {
-  "name": "currency_country_exchange",
-  "version": "1.8.7",
+  "name": "currency_contry_exchange",
+  "version": "1.9.0",
   "type": "module",
   "license": "MIT",
   "files": [
