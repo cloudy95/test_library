@@ -30,7 +30,7 @@ export const FormaterCurrency: Record<string, (params: FormaterCurrencyFnc) => s
     'co': ({ currenzy = '', typeCurrenzy = '' }: FormaterCurrencyFnc) => {
         const number = parseFloat(currenzy.toString());
 
-        if (typeCurrenzy === TYPECURRENZY.euro) {
+        if (typeCurrenzy === TYPECURRENZY.euro || typeCurrenzy === TYPECURRENZY.dolar) {
             return new Intl.NumberFormat("es-CL", {
                 style: 'decimal',
                 minimumFractionDigits: 2,
