@@ -35,10 +35,6 @@ export const Labels:any = {
       'sbif':'SBIF'
     },
     'co':{
-      'cliente': 'Proveedor',
-      'clientes': 'Proveedores',
-      'deudor': 'Aceptante',
-      'deudores': 'Aceptantes',
       'rut':'NIT',
       'rut cliente':'NIT Proveedor',
       'region':'Departamento',
@@ -49,8 +45,9 @@ export const Labels:any = {
       'anfac':'',
       'sbif':'',
       'cesión':'Endoso',
-      'excedente':'Garantia',
+      'excedente':'Remanente Valor/Factor Descuento',
       'iva':'IVA',
+      'anticipo':'Valor nominal'
     },
     '':{
       'cliente': 'Cliente',

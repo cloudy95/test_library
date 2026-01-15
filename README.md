@@ -1,105 +1,129 @@
-# TypeScript
+# currency_contry_exchange
 
-Librería para formateo de monedas, documentos, etiquetas y cálculo de intereses según país.
+Librería TypeScript para formateo de monedas, formatos de documento (RUT/NIT), etiquetas localizadas y cálculo de intereses por país.
+
+**Versión:** 1.9.2 • **Licencia:** MIT
+
+## Contenido
+- **Descripción rápida**
+- **Instalación**
+- **Uso (TypeScript)**
+- **Referencia de la API**
+- **Archivos principales**
+- **Comandos útiles**
+- **Contribuir**
+
+## Descripción rápida
+Provee utilidades para manejar formatos y cálculos locales (por ejemplo: CL, PE). Incluye formateo de monedas, validación y formateo de documentos, generación de propiedades para inputs numéricos y cálculo de intereses (simple/compuesto).
 
 ## Instalación
+Usa el gestor que prefieras:
 
 ```bash
 npm install currency_contry_exchange
+pnpm add currency_contry_exchange
+yarn add currency_contry_exchange
 ```
 
-## Importación y Uso
+> Tipo de paquete: módulo ESM. Incluye definiciones TypeScript en `dist`.
+
+## Uso (TypeScript)
 
 ```typescript
-import { Faastlocation } from 'faastlocation';
+import { Faastlocation } from 'currency_contry_exchange';
 
-// Puedes inicializar con país por defecto (opcional)
-const location = new Faastlocation('cl'); // o sin parámetro para usar el default
+// Instanciar con país por defecto (opcional)
+const locale = new Faastlocation('cl');
+
+// Ejemplos
+const label = locale.labels({ contry: 'cl', label: 'cliente' });
+const formatted = locale.formaterCurrency({ contry: 'cl', currency: 12500 });
+const rutValid = locale.validateFormaterRut({ contry: 'pe', rut: '20123456-7', isValidate: true });
+const props = locale.formaterInputProps({ contry: 'cl', typeCurrenzy: 'CLP', decimalScale: 0, fixedDecimalScale: true });
+
+// Cálculo de interés simple
+const interes = locale.interestAmountunt({ contry: 'cl', type: 'simple', anticipo: 650000, tasa: 1.8, plazo: 90 });
 ```
 
-## Métodos Disponibles
+## Referencia de la API
 
-- **labels({ contry, label }): string**  
-  Devuelve una etiqueta específica basada en el país y la etiqueta proporcionada.
+Instancia principal: `Faastlocation` — provee los siguientes métodos:
 
-- **validateFormaterRut({ contry, rut, isValidate }): string | boolean**  
-  Valida o formatea un RUT (Rol Único Tributario) según el país especificado.  
-  Si `isValidate` es `true`, valida el rut; si es `false` (por defecto), lo formatea.
+- **labels({ contry?, label }): string**
+  - Descripción: Devuelve una etiqueta localizada (por ejemplo, 'cliente' → 'Cliente').
+  - Notas: `contry` por defecto se toma de la instancia si se pasó al constructor.
 
-- **validateFormaterDoc({ contry, rut, isValidate }): string | boolean**  
-  Valida o formatea un documento según el país.
+- **validateFormaterRut({ contry?, rut, isValidate = false }): string | boolean**
+  - Descripción: Valida o formatea un RUT/NIT según país. Si `isValidate` es `true`, devuelve `boolean`.
 
-- **formaterCurrency({ contry, currency, typeCurrenzy }): string**  
-  Formatea una cantidad de moneda específica según el país.
+- **validateFormaterDoc({ contry?, rut, isValidate = false }): string | boolean**
+  - Descripción: Similar a `validateFormaterRut` pero orientado a documentos genéricos.
 
-- **formaterInputProps({ contry, typeCurrenzy, decimalScale, fixedDecimalScale }): object**  
-  Devuelve propiedades de objeto específicas según el país, útil para librerías como NumberFormat.
+- **formaterCurrency({ contry?, currency, typeCurrenzy? }): string**
+  - Descripción: Formatea un número como moneda (separadores, símbolos según país/tipo).
 
-- **formaterAmount({ contry, amount, typeCurrenzy }): string**  
-  Formatea una cantidad según el país especificado.
+- **formaterInputProps({ contry?, typeCurrenzy?, decimalScale?, fixedDecimalScale? }): object**
+  - Descripción: Retorna propiedades convenientes para componentes de input numérico (ej. NumberFormat).
 
-- **rutValidatorIsNatural({ contry, rut }): boolean**  
-  Valida si el rut corresponde a una persona natural según el país.
+- **formaterAmount({ contry?, amount, typeCurrenzy? }): string**
+  - Descripción: Otro helper para formateo de montos con reglas locales.
 
-- **symbolCurrencyIndicadorCartera({ contry }): string**  
-  Devuelve el símbolo de la moneda para el país.
+- **rutValidatorIsNatural({ contry?, rut }): boolean**
+  - Descripción: Indica si el RUT/NIT corresponde a una persona natural.
 
-- **formaterNumDocument({ contry, value }): string**  
-  Formatea el número de documento según el país.
+- **symbolCurrencyIndicadorCartera({ contry? }): string**
+  - Descripción: Símbolo de moneda para el país (ej. `$`, `S/`).
 
-- **interestAmountunt({ contry, type, anticipo, tasa, plazo, array_interes }): number | string | any[]**  
-  Calcula el interés simple o compuesto según país y parámetros.  
-  - Para Chile (`cl`): retorna entero, redondeando hacia arriba solo si hay decimales.  
-  - Para Perú (`pe`): retorna con 2 decimales.  
-  - Soporta cálculo individual o por arreglo (`array_interes`).
+- **formaterNumDocument({ contry?, value }): string**
+  - Descripción: Formatea números de documento (agrega puntos/guiones según normativa).
 
-## Ejemplo de Uso
+- **interestAmountunt({ contry?, type, anticipo, tasa, plazo, array_interes? }): number | string | any[]**
+  - Descripción: Calcula interés simple o compuesto. Para Chile la salida suele ser entero; para Perú tiene 2 decimales.
 
-```typescript
-const location = new Faastlocation('cl');
+Los tipos están disponibles en la definición TypeScript incluida.
 
-const label = location.labels({ contry: 'cl', label: 'cliente' });
-console.log(label);
+## Archivos principales (resumen del código fuente)
 
-const formattedRut = location.validateFormaterRut({ contry: 'pe', rut: '123456789', isValidate: true });
-console.log(formattedRut);
+- `src/main.ts`: Implementación de la clase `Faastlocation` y la API pública.
+- `src/utils/const.ts`: Constantes, labels y símbolos de moneda.
+- `src/utils/Contrycode.ts`: Normalización de códigos de país (entrada flexible: 'CL','cl','chile').
+- `src/utils/FormaterCurrency.ts`: Formateo de moneda por país.
+- `src/utils/FormaterAmount.ts`: Helpers de formateo de montos.
+- `src/utils/formaterNumDocument.ts`: Formateo de números de documento.
+- `src/utils/InterestAmount.ts`: Cálculo de intereses (simple y compuesto).
+- `src/utils/Propsinput.ts`: Generación de props para inputs numéricos.
+- `src/utils/Rutvalidatorisnatural.ts`: Reglas para validar personas naturales.
+- `src/utils/validaterutsformater.ts`: Funciones que formatean/validan RUTs y documentos.
 
-const formattedCurrency = location.formaterCurrency({ contry: 'cl', currency: 1000 });
-console.log(formattedCurrency);
+Si vas a documentar internamente alguna función adicional, revisa los archivos en `src/utils`.
 
-const inputProps = location.formaterInputProps({ contry: 'cl', typeCurrenzy: 'CLP' });
-console.log(inputProps);
+## Comandos útiles
 
-const interest = location.interestAmountunt({ contry: 'cl', type: 'simple', anticipo: 650000, tasa: 1.8, plazo: 90 });
-console.log(interest); // 35100
+- **Desarrollo**: `npm run dev` (inicia Vite)
+- **Build**: `npm run build` (compila TypeScript y build de Vite)
+- **Tests**: `npm run test` — usa `jest`.
+- **Tests (watch)**: `npm run test:watch`
+- **Coverage**: `npm run test:coverage`
 
-const interestArray = location.interestAmountunt({
-  contry: 'pe',
-  type: 'compuesto',
-  array_interes: [
-    { id: 1, anticipo: 1000, tasa: 2, plazo: 60 },
-    { id: 2, anticipo: 2000, tasa: 1.5, plazo: 30 }
-  ]
-});
-console.log(interestArray); // [{ id: 1, result: },{ id: 2, result: }]
-```
+## Tipos y distribución
 
-## Tabla de Métodos
+El paquete publica `main` y `module` en `dist/` y provee definiciones TypeScript (`types`), por lo que la integración en proyectos TS es directa.
 
-| Método                         | Parámetros                                                                 | Retorno         | Descripción                                                                                                   |
-|------------------------------- |---------------------------------------------------------------------------|-----------------|---------------------------------------------------------------------------------------------------------------|
-| labels                         | { contry: string, label: string }                                         | string          | Devuelve una etiqueta localizada.                                                                             |
-| validateFormaterRut            | { contry: string, rut: string, isValidate: boolean }                      | string/boolean  | Valida o formatea un RUT según país.                                                                          |
-| validateFormaterDoc            | { contry: string, rut: string, isValidate: boolean }                      | string/boolean  | Valida o formatea un documento según país.                                                                    |
-| formaterCurrency               | { contry: string, currency: number, typeCurrenzy: string }                | string          | Formatea un valor monetario según país y tipo de moneda.                                                      |
-| formaterInputProps             | { contry: string, typeCurrenzy: string, decimalScale?: number, fixedDecimalScale?: boolean } | object          | Devuelve propiedades de input adaptadas al país y moneda.                                                     |
-| formaterAmount                 | { contry: string, amount: number, typeCurrenzy: string }                  | string          | Devuelve el monto formateado según país.                                                                      |
-| rutValidatorIsNatural          | { contry: string, rut: string }                                           | boolean         | Valida si el rut es de persona natural.                                                                       |
-| symbolCurrencyIndicadorCartera | { contry: string }                                                        | string          | Devuelve el símbolo de la moneda para el país.                                                                |
-| formaterNumDocument            | { contry: string, value: string }                                         | string          | Formatea el número de documento según país.                                                                   |
-| interestAmountunt              | { contry: string, type: 'simple' \| 'compuesto', anticipo: number, tasa: number, plazo: number, array_interes?: any[] } | number/string/any[] | Calcula interés simple o compuesto según país. CL: entero, redondeo arriba si hay decimales. PE: 2 decimales. |
+## Contribuir
+
+1. Haz fork y crea una rama con tu cambio.
+2. Añade pruebas unitarias para nuevas funcionalidades en `src/__tests__`.
+3. Abre un PR describiendo el cambio.
+
+## Licencia
+MIT — ver `package.json` (campo `license`).
 
 ---
 
-**Nota:**  
-Puedes inicializar la instancia con el país por defecto, así no necesitas pasar `contry` en cada método.
+Si quieres, puedo:
+
+- Generar un `docs/API.md` con la lista completa de funciones y ejemplos detallados.
+- Añadir un `USAGE.md` con casos de uso y snippets.
+- Ejecutar los tests y adjuntar resultados.
+
+Indica cuál prefieres y lo hago a continuación.
