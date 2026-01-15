@@ -81,29 +81,3 @@ Instancia principal: `Faastlocation` — provee los siguientes métodos:
   - Descripción: Calcula interés simple o compuesto. Para Chile la salida suele ser entero; para Perú tiene 2 decimales.
 
 Los tipos están disponibles en la definición TypeScript incluida.
-
-## Notas técnicas
-El paquete publica definiciones TypeScript y está preparado para integrarse en proyectos TypeScript.
-
-## Comandos útiles
-
-- **Desarrollo**: `npm run dev` (inicia Vite)
-- **Build**: `npm run build` (compila TypeScript y build de Vite)
-- **Tests**: `npm run test` — usa `jest`.
-- **Tests (watch)**: `npm run test:watch`
-- **Coverage**: `npm run test:coverage`
-
-## Tipos y distribución
-
-El paquete publica `main` y `module` en `dist/` y provee definiciones TypeScript (`types`), por lo que la integración en proyectos TS es directa.
-
-## Contribuir
-
-1. Haz fork y crea una rama con tu cambio.
-2. Añade pruebas unitarias para nuevas funcionalidades en `src/__tests__`.
-3. Abre un PR describiendo el cambio.
-
-## Licencia
-MIT — ver `package.json` (campo `license`).
-
----
