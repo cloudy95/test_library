@@ -82,20 +82,8 @@ Instancia principal: `Faastlocation` — provee los siguientes métodos:
 
 Los tipos están disponibles en la definición TypeScript incluida.
 
-## Archivos principales (resumen del código fuente)
-
-- `src/main.ts`: Implementación de la clase `Faastlocation` y la API pública.
-- `src/utils/const.ts`: Constantes, labels y símbolos de moneda.
-- `src/utils/Contrycode.ts`: Normalización de códigos de país (entrada flexible: 'CL','cl','chile').
-- `src/utils/FormaterCurrency.ts`: Formateo de moneda por país.
-- `src/utils/FormaterAmount.ts`: Helpers de formateo de montos.
-- `src/utils/formaterNumDocument.ts`: Formateo de números de documento.
-- `src/utils/InterestAmount.ts`: Cálculo de intereses (simple y compuesto).
-- `src/utils/Propsinput.ts`: Generación de props para inputs numéricos.
-- `src/utils/Rutvalidatorisnatural.ts`: Reglas para validar personas naturales.
-- `src/utils/validaterutsformater.ts`: Funciones que formatean/validan RUTs y documentos.
-
-Si vas a documentar internamente alguna función adicional, revisa los archivos en `src/utils`.
+## Notas técnicas
+El paquete publica definiciones TypeScript y está preparado para integrarse en proyectos TypeScript.
 
 ## Comandos útiles
 
@@ -119,11 +107,3 @@ El paquete publica `main` y `module` en `dist/` y provee definiciones TypeScript
 MIT — ver `package.json` (campo `license`).
 
 ---
-
-Si quieres, puedo:
-
-- Generar un `docs/API.md` con la lista completa de funciones y ejemplos detallados.
-- Añadir un `USAGE.md` con casos de uso y snippets.
-- Ejecutar los tests y adjuntar resultados.
-
-Indica cuál prefieres y lo hago a continuación.
