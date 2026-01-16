@@ -57,7 +57,8 @@ export interface interestAmountuntInterface {
     anticipo?:number | string;
     tasa?:number | string;
     plazo?:number | string;
-    array_interes?:interesArrayInterface[]
+    array_interes?:interesArrayInterface[];
+    typeCurrency?:string;
 }
 
 export interface interesArrayInterface {
