@@ -14,7 +14,7 @@ Librería TypeScript para formateo de monedas, formatos de documento (RUT/NIT), 
 - **Contribuir**
 
 ## Descripción rápida
-Provee utilidades para manejar formatos y cálculos locales (por ejemplo: CL, PE). Incluye formateo de monedas, validación y formateo de documentos, generación de propiedades para inputs numéricos y cálculo de intereses (simple/compuesto).
+Provee utilidades para manejar formatos y cálculos locales (por ejemplo: CL, PE, CO). Incluye formateo de monedas, validación y formateo de documentos, generación de propiedades para inputs numéricos y cálculo de intereses (simple/compuesto).
 
 ## Instalación
 Usa el gestor que prefieras:
@@ -43,6 +43,9 @@ const props = locale.formaterInputProps({ contry: 'cl', typeCurrenzy: 'CLP', dec
 
 // Cálculo de interés simple
 const interes = locale.interestAmountunt({ contry: 'cl', type: 'simple', anticipo: 650000, tasa: 1.8, plazo: 90 });
+
+// Cálculo de interés para Colombia con moneda extranjera
+const interesCO = locale.interestAmountunt({ contry: 'co', type: 'simple', anticipo: 1000, tasa: 2.5, plazo: 30, typeCurrency: 'USD' });
 ```
 
 ## Referencia de la API
@@ -77,8 +80,8 @@ Instancia principal: `Faastlocation` — provee los siguientes métodos:
 - **formaterNumDocument({ contry?, value }): string**
   - Descripción: Formatea números de documento (agrega puntos/guiones según normativa).
 
-- **interestAmountunt({ contry?, type, anticipo, tasa, plazo, array_interes? }): number | string | any[]**
-  - Descripción: Calcula interés simple o compuesto. Para Chile la salida suele ser entero; para Perú tiene 2 decimales.
+- **interestAmountunt({ contry?, type, anticipo, tasa, plazo, array_interes?, typeCurrency? }): number | string | any[]**
+  - Descripción: Calcula interés simple o compuesto. Para Chile la salida suele ser entero; para Perú tiene 2 decimales; para Colombia depende de la moneda (EUR/USD: 2 decimales, COP: entero).
 
 Los tipos están disponibles en la definición TypeScript incluida.
 
