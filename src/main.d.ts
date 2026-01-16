@@ -17,7 +17,7 @@ declare interface FaastlocationInterface {
     rutValidatorIsNatural: ({ contry, rut }: RutValidatorIsNaturalinterface) => boolean;
     symbolCurrencyIndicadorCartera: ({ contry }: symbolCurrencyIndicadorCarterainterface) => string;
     formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
-    interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes}:interestAmountuntInterface) => number | string | any[];
+    interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes, typeCurrency}:interestAmountuntInterface) => number | string | any[];
 }
   
 declare class Faastlocation implements FaastlocationInterface {
@@ -31,7 +31,7 @@ declare class Faastlocation implements FaastlocationInterface {
     rutValidatorIsNatural({ contry, rut }: RutValidatorIsNaturalinterface): boolean;
     symbolCurrencyIndicadorCartera({ contry }: symbolCurrencyIndicadorCarterainterface | any): string;
     formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
-    interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes}:interestAmountuntInterface) => number | string | any[];
+    interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes, typeCurrency}:interestAmountuntInterface) => number | string | any[];
 }
   
 

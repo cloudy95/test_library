@@ -19,7 +19,7 @@ export interface FaastlocationInterface {
   rutValidatorIsNatural:({ contry, rut }:RutValidatorIsNaturalinterface)=>boolean;
   symbolCurrencyIndicadorCartera: ({ contry }:symbolCurrencyIndicadorCarterainterface) => string;
   formaterNumDocument: ({ contry, value }:formaterNumDocumentinterface) => string;
-  interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes}:interestAmountuntInterface) => number | string | any[];
+  interestAmountunt: ({ contry, type, anticipo, tasa, plazo, array_interes, typeCurrency}:interestAmountuntInterface) => number | string | any[];
 }
 
 export class Faastlocation implements FaastlocationInterface {
@@ -119,10 +119,10 @@ export class Faastlocation implements FaastlocationInterface {
     return formaterNumberDocument[normalizedContry](value) || value;
   }
 
-  interestAmountunt({ contry = this.defaultCountry, type = '', anticipo = 0, tasa = 0, plazo = 0, array_interes = []}: interestAmountuntInterface) : number | string | any[] {
+  interestAmountunt({ contry = this.defaultCountry, type = '', anticipo = 0, tasa = 0, plazo = 0, array_interes = [], typeCurrency = ''}: interestAmountuntInterface) : number | string | any[] {
     const normalizedContry = contryCode(contry);
 
-    return intersetAmountFnc[normalizedContry]({ type, anticipo, tasa, plazo, array_interes}) || '';
+    return intersetAmountFnc[normalizedContry]({ type, anticipo, tasa, plazo, array_interes, typeCurrency}) || '';
   }
 
 }

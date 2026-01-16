@@ -1,4 +1,5 @@
 import { interestAmountuntInterface, Typeinterest } from "../models/interfaces"
+import { TYPECURRENZY } from "./const";
 
 function calcSimple({ tasa = 0, plazo = 0, anticipo = 0 }: any) {
     const t = (Number(tasa) || 0) / 100;
@@ -60,6 +61,16 @@ export const intersetAmountFnc: any = {
             return procesarArray(type, array_interes, roundCL);
         }
         return procesarIndividual(type, { tasa, plazo, anticipo }, roundCL);
+    },
+    'co': ({ type, anticipo, tasa, plazo, array_interes, typeCurrency = "" }: interestAmountuntInterface) => {
+        // Para monedas extranjeras (EUR, USD) usar 2 decimales, para COP usar redondeo entero
+        const usarDecimales = typeCurrency && [TYPECURRENZY.euro, TYPECURRENZY.dolar].includes(typeCurrency?.toUpperCase());
+        const roundFn = usarDecimales ? roundPE : roundCL;
+        
+        if (Array.isArray(array_interes) && array_interes.length > 0) {
+            return procesarArray(type, array_interes, roundFn);
+        }
+        return procesarIndividual(type, { tasa, plazo, anticipo }, roundFn);
     },
     '': ({ type, anticipo, tasa, plazo, array_interes }: interestAmountuntInterface) => {
         if (Array.isArray(array_interes) && array_interes.length > 0) {
