@@ -39,7 +39,6 @@ export const Labels:any = {
       'rut cliente':'NIT Proveedor',
       'region':'Departamento',
       'comuna':'Distrito',
-      'dicom':'Sentinel',
       'documento':'NIT',
       'sii':'RADIAN',
       'anfac':'',
