@@ -37,8 +37,8 @@ export const Labels:any = {
     'co':{
       'rut':'NIT',
       'rut cliente':'NIT Proveedor',
-      'region':'Departamento',
-      'comuna':'Distrito',
+      'region':'Región',
+      'comuna':'Municipio',
       'documento':'NIT',
       'sii':'RADIAN',
       'anfac':'',
@@ -46,7 +46,8 @@ export const Labels:any = {
       'cesión':'Endoso',
       'excedente':'Remanente Valor/Factor Descuento',
       'iva':'IVA',
-      'anticipo':'Valor nominal'
+      'anticipo':'Valor nominal',
+      'provincia':'Departamento',
     },
     '':{
       'cliente': 'Cliente',
